@@ -1,0 +1,47 @@
+@import "../grid";
+
+:root {
+  --grid-size: 16px;
+}
+
+:host {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+}
+
+.atomic-root-grid {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.left {
+  margin-left: 0;
+}
+
+.right {
+  margin-right: 0;
+}
+
+.top {
+  margin-top: 0;
+}
+
+.bottom {
+  margin-top: 0;
+}
+
+.debug-grid {
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 7.5px, #eee 7.5px, #eee 8.5px),
+  repeating-linear-gradient(-90deg, transparent, transparent 7.5px, #eee 7.5px, #eee 8.5px);
+  background-size: calc(var(--grid-size, 16px) / 2) calc(var(--grid-size, 16px) / 2);
+  z-index: 2000;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+}

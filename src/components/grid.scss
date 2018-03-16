@@ -1,0 +1,97 @@
+:root {
+  --phone: 320px;
+  --tablet: 768px;
+  --desktop: 1024px;
+  --widescreen: 1280px;
+  --fullhd: 1600px;
+}
+
+// TODO lvb, use sass as long as there is no mixin/function in css
+
+@function calcGrid($noGridTiles) {
+  @return calc(#{$noGridTiles} * var(--grid-size));
+}
+
+@mixin grid() {
+  position: relative;
+  margin: 0;
+  display: inline-flex;
+  overflow-x: hidden;
+  -ms-overflow-y: scroll;
+}
+
+@for $x from 1 through 50 {
+  .atomic-x-#{$x} {
+    @include grid();
+    width: calcGrid($x);
+  }
+}
+
+@for $y from 1 through 50 {
+  .atomic-y-#{$y} {
+    @include grid();
+    height: calcGrid($y);
+  }
+}
+
+.atomic-x-full {
+  @include grid();
+  width: 100%;
+  min-width: calcGrid(1);
+}
+
+.atomic-y-full {
+  @include grid();
+  height: 100%;
+  min-height: calcGrid(1);
+}
+
+@media only screen and (max-width: var(--phone) - 1) {
+}
+
+@media only screen and (min-width: var(--phone)) and (max-width: var(--tablet) - 1 ) {
+  @for $x from 1 through 10 {
+    .atomic-x-#{$x}-phone {
+      @include grid();
+      width: calcGrid($x);
+    }
+  }
+}
+
+@media only screen and (min-width: var(--tablet)) and (max-width: var(--desktop) - 1) {
+  @for $x from 1 through 32 {
+    .atomic-x-#{$x}-tablet {
+      @include grid();
+      width: calcGrid($x);
+    }
+  }
+}
+
+@media only screen and (min-width: var(--desktop)) and (max-width: var(--widescreen) - 1) {
+  @for $x from 1 through 40 {
+    .atomic-x-#{$x}-desktop {
+      @include grid();
+      width: calcGrid($x);
+    }
+  }
+}
+
+@media only screen and (min-width: var(--widescreen)) and (max-width: var(--fullhd) - 1) {
+  @for $x from 1 through 50 {
+    .atomic-x-#{$x}-widescreen {
+      @include grid();
+      width: calcGrid($x);
+    }
+  }
+}
+
+@media only screen and (min-width: var(--fullhd)) {
+  @for $x from 1 through 100 {
+    .atomic-x-#{$x}-fullhd {
+      @include grid();
+      width: calcGrid($x);
+    }
+  }
+}
+
+

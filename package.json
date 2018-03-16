@@ -1,17 +1,18 @@
 {
-  "name": "my-component",
+  "name": "root-grid",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
-  "main": "dist/mycomponent.js",
+  "main": "dist/frontall.js",
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
     "dist/"
   ],
-  "browser": "dist/mycomponent.js",
+  "browser": "dist/RootGrid.js",
   "scripts": {
-    "build": "stencil build",
-    "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
+    "scss": "node-sass src/components/grid.scss -o dist & node-sass src/components/grid.scss -o www/build",
+    "build": "npm run scss & stencil build",
+    "dev": "npm run scss & sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\"",
     "serve": "stencil-dev-server",
     "start": "npm run dev",
     "test": "jest --no-cache",
@@ -22,9 +23,11 @@
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
+    "@stencil/sass": "0.0.3",
     "@stencil/utils": "latest",
     "@types/jest": "^21.1.1",
-    "jest": "^21.2.1"
+    "jest": "^21.2.1",
+    "node-sass": "^4.7.2"
   },
   "repository": {
     "type": "git",

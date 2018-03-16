@@ -1,17 +1,17 @@
 import { flush, render } from '@stencil/core/testing';
-import { MyComponent } from './my-component';
+import { RootGrid } from './root-grid';
 
-describe('my-component', () => {
+describe('root-grid', () => {
   it('should build', () => {
-    expect(new MyComponent()).toBeTruthy();
+    expect(new RootGrid()).toBeTruthy();
   });
 
   describe('rendering', () => {
     let element;
     beforeEach(async () => {
       element = await render({
-        components: [MyComponent],
-        html: '<my-component></my-component>'
+        components: [RootGrid],
+        html: '<root-grid></root-grid>'
       });
     });
 
