@@ -1,7 +1,3 @@
-:root {
-  --grid-size--grid-size: 16px;
-}
-
 :host {
   position: absolute;
   width: 100vw;

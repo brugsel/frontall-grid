@@ -1,7 +1,7 @@
 import {Component, Listen, Prop, State, Watch, Element} from '@stencil/core';
 
 @Component({
-  tag: 'root-grid',
+  tag: 'frl-root-grid',
   styleUrl: 'root-grid.css',
   host: {
     theme: 'root-grid',

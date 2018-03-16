@@ -1,18 +1,18 @@
 {
-  "name": "root-grid",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
-  "main": "dist/frontall.js",
+  "name": "@frontall/frontall-grid",
+  "version": "0.0.5",
+  "description": "A 16px grid system",
+  "main": "dist/frontall-grid.js",
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
     "dist/"
   ],
-  "browser": "dist/RootGrid.js",
+  "browser": "dist/frontall-grid.js",
   "scripts": {
-    "scss": "node-sass src/components/grid.scss -o dist & node-sass src/components/grid.scss -o www/build",
-    "build": "npm run scss & stencil build",
-    "dev": "npm run scss & sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\"",
+    "scss": "node-sass src/frontall-css-grid.scss -o dist & node-sass src/frontall-css-grid.scss -o www/build",
+    "build": "stencil build && npm run scss",
+    "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" & npm run scss",
     "serve": "stencil-dev-server",
     "start": "npm run dev",
     "test": "jest --no-cache",
@@ -31,12 +31,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "git+https://github.com/brugsel/frontall-grid.git"
   },
-  "author": "Ionic Team",
+  "author": "brugsel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ionic-team/stencil"
+    "url": "https://github.com/brugsel/frontall-grid"
   },
   "homepage": "https://github.com/ionic-team/stencil",
   "jest": {

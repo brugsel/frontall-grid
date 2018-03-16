@@ -1,9 +1,11 @@
 const sass = require('@stencil/sass');
 
 exports.config = {
-  namespace: 'frontall',
+  namespace: 'frontall-grid',
   generateDistribution: true,
+  generateWWW: true,
   serviceWorker: false,
+  globalStyle: 'src/global/variables.css',
   copy: [
     { src: 'favicon.ico'},
     { src: '*.css'}
@@ -11,10 +13,7 @@ exports.config = {
   plugins: [
     sass({
       injectPaths: [
-        'src/components'
-      ],
-      injectGlobalPaths: [
-        'src/components/grid.scss'
+        'src'
       ]
     })
   ]
