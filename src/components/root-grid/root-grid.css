@@ -1,7 +1,5 @@
-@import "../grid";
-
 :root {
-  --grid-size: 16px;
+  --grid-size--grid-size: 16px;
 }
 
 :host {
