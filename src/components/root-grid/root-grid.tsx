@@ -1,4 +1,4 @@
-import {Component, Listen, Prop, State, Watch} from '@stencil/core';
+import {Component, Listen, Prop, State, Watch, Element} from '@stencil/core';
 
 @Component({
   tag: 'root-grid',
@@ -10,6 +10,8 @@ import {Component, Listen, Prop, State, Watch} from '@stencil/core';
 })
 export class RootGrid {
 
+  @Element() rootGrid: HTMLElement;
+
   @Prop() align: string = 'top';
   @Prop() size: number;
   @Prop() gridSize: number = 16;
@@ -17,8 +19,9 @@ export class RootGrid {
   @State() calculatedWidth: number;
   @State() calculatedHeight: number;
 
-  debug: boolean = false;
+  @State() debug: boolean = false;
 
+  @Watch('debug')
   render() {
     let debugTag;
     if (this.debug) {
@@ -33,37 +36,32 @@ export class RootGrid {
   }
 
   @Listen('window:resize')
-  componentDidLoad(): void {
-    console.log('componentDidLoad');
+  recalculate(): void {
     this.calculateGridWidth();
     this.calculateGridHeight();
   }
 
-  @Listen('keydown')
-  handleKeyDown(ev){
-      console.log('down arrow pressed: ', ev);
+  @Listen('window:keydown')
+  toggleVisibleGrid($event) {
+    if ($event.code === 'KeyG' && $event.altKey && $event.shiftKey) {
+      $event.stopPropagation();
+      this.debug = !this.debug;
+    }
   }
-  //
-  // @Listen('keydown')
-  // toggleVisibleGrid($event) {
-  //   debugger;
-  //   if ($event.code === 'KeyG' && $event.altKey && $event.shiftKey) {
-  //     console.log('Toggle debug');
-  //     $event.stopPropagation();
-  //     this.debug = !this.debug;
-  //   }
-  // }
 
   @Watch('calculatedWidth')
   resetWidth() {
-    console.log('calculatedWidth');
     this.getContainer().style.width = this.calculatedWidth + 'px';
   }
 
   @Watch('calculatedHeight')
   resetSize() {
-    console.log('calculatedHeight');
     this.getContainer().style.height = this.calculatedHeight + 'px';
+  }
+
+  componentDidLoad() {
+    this.recalculate();
+    console.log('Press Shift-Alt-g to enable debugging grid.');
   }
 
   calculateGridWidth(): void {
@@ -83,7 +81,7 @@ export class RootGrid {
   }
 
   getContainer(): HTMLElement {
-    return document.querySelector('root-grid').shadowRoot.querySelector('.atomic-root-grid') as HTMLElement;
+    return this.rootGrid.shadowRoot.querySelector('.atomic-root-grid') as HTMLElement;
   }
 
 }
