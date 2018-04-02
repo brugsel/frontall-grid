@@ -5,7 +5,7 @@ exports.config = {
   generateDistribution: true,
   generateWWW: true,
   serviceWorker: false,
-  globalStyle: 'src/global/variables.css',
+  globalStyle: 'src/style/frontall-grid.scss',
   copy: [
     { src: 'favicon.ico'},
     { src: '*.css'}
@@ -13,7 +13,7 @@ exports.config = {
   plugins: [
     sass({
       injectPaths: [
-        'src'
+        'src/style'
       ]
     })
   ]
