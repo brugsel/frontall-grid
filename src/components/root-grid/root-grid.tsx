@@ -39,6 +39,7 @@ export class RootGrid {
   recalculate(): void {
     this.calculateGridWidth();
     this.calculateGridHeight();
+    this.correctBottomAlignment();
   }
 
   @Listen('window:keydown')
@@ -77,6 +78,12 @@ export class RootGrid {
       this.calculatedHeight = this.size * this.gridSize;
     } else {
       this.calculatedHeight = Math.floor(window.innerHeight / this.gridSize) * this.gridSize;
+    }
+  }
+
+  correctBottomAlignment(): void {
+    if (this.align === 'bottom') {
+      this.getContainer().style.marginTop = window.innerHeight - this.calculatedHeight + 'px';
     }
   }
 
